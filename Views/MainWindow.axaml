@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Queue.ViewModels"
+        mc:Ignorable="d"
+        Width="800" Height="800"
+        x:Class="Queue.Views.MainWindow"
+        Title="Демонстрация очереди"
+        x:DataType="vm:MainWindowViewModel">
+    
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Демонстрация работы очереди" FontSize="16" HorizontalAlignment="Center"/>
+        
+        <StackPanel Spacing="5">
+            <TextBlock Text="Добавить элемент:"/>
+            <TextBox Text="{Binding NewItem, Mode=TwoWay}" Watermark="Введите текст"/>
+            <Button Content="Добавить в очередь" Command="{Binding EnqueueCommand}"/>
+        </StackPanel>
+        
+        <Separator/>
+        
+        <StackPanel Spacing="5">
+            <TextBlock Text="Очередь:"/>
+            <ListBox ItemsSource="{Binding QueueItems}" Height="150"/>
+        </StackPanel>
+        
+        <Separator/>
+        
+        <StackPanel Spacing="10">
+            <Button Content="Извлечь элемент" Command="{Binding DequeueCommand}"/>
+            <Button Content="Очистить очередь" Command="{Binding ClearCommand}"/>
+        </StackPanel>
+        
+        <Separator/>
+        
+        <TextBlock Text="{Binding Status}" FontWeight="Bold"/>
+    </StackPanel>
+</Window>
